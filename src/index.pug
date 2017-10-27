@@ -1,0 +1,17 @@
+doctype html
+html(lang='ko')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='initial-scale=1, minimum-scale=1, width=device-width')
+        meta(property='og:type', content='website')
+        title #{TITLE}
+        link(rel='stylesheet' href='/www.min.css')
+        block head
+    body
+        if DEVELOPMENT
+            div(id='app')
+        else
+            div(id='app') !{CONTENT}
+        script(src='/bundle.js')
+        block script
