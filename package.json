@@ -34,13 +34,20 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.0",
     "jsonwebtoken": "^7.3.0",
+    "material-ui": "^0.19.4",
     "pug": "^2.0.0-beta11",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-logger": "^1.1.0",
     "react-redux": "^5.0.6",
-    "react-router": "^4.0.0",
+    "react-router": "4.0.0",
     "react-router-dom": "^4.0.0",
-    "redux": "^3.7.2"
+    "react-thunk": "^1.0.0",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "rx": "^4.1.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "asset-require-hook": "^1.0.2",

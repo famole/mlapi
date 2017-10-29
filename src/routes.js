@@ -4,18 +4,20 @@ import Redirect from 'react-router-dom/Redirect';
 import Switch from 'react-router-dom/Switch';
 import Link from 'react-router-dom/Link';
 import Home from './container/Home';
-import About from './container/About';
+import Detail from './container/About';
+import MainLayout from './container/MainLayout';
+import NotFound from './presenter/NotFound';
 
 export default (
     <div>
-        <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-        </ul>
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
         <Switch>
+            <Route path="/" exact component={Home}/>
+            <Route path="/items" exact component={Home}/>
+            
+            <Route path="/items/:id" component={Home} />
+            <Route path="/about" exact component={Detail} />            
             <Redirect from="/home" to="/"/>
+            <Route component={NotFound} />            
         </Switch>
     </div>
 );

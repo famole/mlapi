@@ -2,14 +2,14 @@ import { HTTPMethods } from './HTTPMethods';
 
 export function search_items(q) {
   return {
-    method: httpMethods.GET,
+    method: HTTPMethods.GET,
     path: `items?q=${q}`
   };
 }
 
 export function item(id) {
   return {
-    method: httpMethods.GET,
+    method: HTTPMethods.GET,
     path: `items/${id}`
   };
 }

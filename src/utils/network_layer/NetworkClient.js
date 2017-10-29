@@ -2,10 +2,10 @@
  import request from 'superagent';
  import Rx from 'rx';
  import { HTTPMethods } from './HTTPMethods';
- import constants from '../../data/global_constants';
+ import { apiUrl } from '../../data/global_constants';
 
  function NetworkClient() {
-   this.basePath = constants.apiUrl;
+   this.basePath = apiUrl;
  }
 
  function generateRequest(apiDefinition, finalUrl, requestHandler) {

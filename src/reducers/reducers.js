@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import search_reducer from './search_reducer';
+import items_reducer from './items_reducer';
+import todo from './todo';
 
-// Prevee agregar mas reducers de ser necesario en el futuro.
 const ml_reducers = combineReducers ({
-
+    items_state: items_reducer,
+    todo: todo    
 });
 
 export default ml_reducers;

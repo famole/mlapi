@@ -1,5 +1,5 @@
 import * as search_api from '../api/search_api';
-import { SEARCH_ITEMS, GET_ITEM } from './action_types';
+import { SEARCH_ITEMS, GET_ITEM, FIND_ITEM } from './action_types';
 
 export const fetch_items = (q) => (dispatch) => {
   search_api.get_items(q).subscribe(
@@ -25,4 +25,11 @@ export const fetch_item = (id) => (dispatch) => {
 			},
 			() => {}
 	);
+};
+
+export const find_item = (q) => (dispatch) => {
+  dispatch({
+    type: FIND_ITEM,
+    data: q
+  })
 };
