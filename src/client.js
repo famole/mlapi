@@ -5,16 +5,15 @@ import App from './App';
 import { Provider } from 'react-redux';
 import "./_/css/common.less";
 import configureStore from './store';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const store = configureStore();
 
 ReactDOM.render(
-    <MuiThemeProvider>
+    <AppContainer>
         <Provider store={store}>
             <App />
         </Provider>
-    </MuiThemeProvider>,
+    </AppContainer>,
     document.getElementById('app')
 );
 

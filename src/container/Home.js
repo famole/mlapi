@@ -24,6 +24,7 @@ export class Home extends Component {
 		if (newProps.search !== this.state.search) {
 			this.setState({ search: newProps.search });
 			this.props.fetch_items(newProps.search);
+			console.log("TEST");
 		}
 		this.setState({ items: newProps.items });
 	}

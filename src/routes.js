@@ -8,12 +8,11 @@ import Detail from './container/About';
 import MainLayout from './container/MainLayout';
 import NotFound from './presenter/NotFound';
 
-export default (
+export default () => (
     <div>
         <Switch>
             <Route path="/" exact component={Home}/>
-            <Route path="/items" exact component={Home}/>
-            
+            <Route path="/items" exact component={Home}/>            
             <Route path="/items/:id" component={Home} />
             <Route path="/about" exact component={Detail} />            
             <Redirect from="/home" to="/"/>

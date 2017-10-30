@@ -15,7 +15,9 @@ const apidata = {
 export function getApiData(type, q) {
 	switch (type) {
 		case SEARCH:
-			return Object.assign({}, apidata, { path: '/sites/MLA/search?q=' + q + '&limit=' + SEARCH_LIMIT });
+			console.log("search");
+			console.log(q);
+			return Object.assign({}, apidata, { path: '/sites/MLA/search?q=' + encodeURI(q) + '&limit=' + SEARCH_LIMIT });
 		case SEARCH_PRD_ID:
 			return Object.assign({}, apidata, { path: '/items/' + q });
 		case SEARCH_PRD_DET:
