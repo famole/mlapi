@@ -18,7 +18,7 @@ export const itemsResult = (data) => {
 				},
 				picture: data.results[i].thumbnail,
 				condition: data.results[i].condition,
-				free_shipping: data.results[i].free_shipping
+				free_shipping: data.results[i].shipping.free_shipping
 			};
 			items.push(item);
 			categories.push(data.results[i].category_id);
@@ -58,7 +58,7 @@ export const itemDetail = (data) => {
 
 export const itemDescDetail = (data, response) => {
 	if (!data.hasOwnProperty('error')) {
-		const item = Object.assign({}, response.item, { description: data.text });
+		const item = Object.assign({}, response.item, { description: data.plain_text });
 		return Object.assign({}, response, { item });
 	}
 	return response;

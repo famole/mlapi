@@ -28,16 +28,16 @@ if (!port) {
 }
 
 // for HMR and etc.. using webpack dev server
-if (isDev) {
-    let config = require('../webpack.config.dev');
-    let compiler = webpack(config);
-    let devPort = process.env.DEV_PORT;
-    let devServer = new webpackDevServer(compiler, config.devServer);
-    devServer.listen(devPort, () => {
-        console.log('webpack-dev-server is listening on port', devPort);
-    });
-    app.use(morgan('dev'));
-}
+// if (isDev) {
+//     let config = require('../webpack.config.dev');
+//     let compiler = webpack(config);
+//     let devPort = process.env.DEV_PORT;
+//     let devServer = new webpackDevServer(compiler, config.devServer);
+//     devServer.listen(devPort, () => {
+//         console.log('webpack-dev-server is listening on port', devPort);
+//     });
+//     app.use(morgan('dev'));
+// }
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -49,30 +49,30 @@ app.use(function(req, res, next) {
   });
 app.use('/api', api);
 app.use('/', express.static(path.join(__dirname, '..', 'public')));
-app.get('*', (req, res) => {
-    let context = {};
-    let html = ReactDOMServer.renderToString(
-        <StaticRouter
-            location={req.url}
-            context={context}
-        >
-            {routes}
-        </StaticRouter>
-    );
+// app.get('*', (req, res) => {
+//     let context = {};
+//     let html = ReactDOMServer.renderToString(
+//         <StaticRouter
+//             location={req.url}
+//             context={context}
+//         >
+//             {routes}
+//         </StaticRouter>
+//     );
 
-    if (context.url) {
-        res.redirect(301, context.url);
-    } else {
-        res.render(path.resolve(__dirname, '..', 'src', 'index.pug'), {
-            OG_TITLE: ogTitle,
-            OG_DESCRIPTION: ogDescription,
-            OG_IMAGE: ogImage,
-            TITLE: title,
-            CONTENT: html,
-            DEVELOPMENT: isDev
-        });
-    }
-});
+//     if (context.url) {
+//         res.redirect(301, context.url);
+//     } else {
+//         res.render(path.resolve(__dirname, '..', 'src', 'index.pug'), {
+//             OG_TITLE: ogTitle,
+//             OG_DESCRIPTION: ogDescription,
+//             OG_IMAGE: ogImage,
+//             TITLE: title,
+//             CONTENT: html,
+//             DEVELOPMENT: isDev
+//         });
+//     }
+// });
 app.use((err, req, res) => {
     res.status(500).send('500 Error');
 });

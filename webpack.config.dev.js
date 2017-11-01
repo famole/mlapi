@@ -20,7 +20,8 @@ module.exports = {
         'webpack/hot/only-dev-server',
 
         // the entry point of our app
-        './src/client.js'
+        //'./src/client.js'
+        './app/index.js'
     ],
     output: {
         path: '/',

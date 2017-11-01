@@ -11,17 +11,13 @@ const Router = history.pushState ? BrowserRouter : HashRouter;
 class App extends React.Component {
     render() {
         return (
-            <BrowserRouter>
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <div>
-                <MainLayout>
-                    <div>
-                    <Routes />
-                    </div>
-                </MainLayout>
-                </div>
-            </MuiThemeProvider>
-            </BrowserRouter>
+            <Router>
+                <MuiThemeProvider muiTheme={getMuiTheme()}>
+                    <MainLayout>
+                        <Routes />
+                    </MainLayout>
+                </MuiThemeProvider>
+            </Router>
         );
     }
 }
