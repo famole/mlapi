@@ -14,17 +14,24 @@ NodeJs - example of api to consume an external endpoint. (Mercado Libre endpoint
     ```
     $ npm install -g yarn pm2
     ```
+
+3. Rename the config file.
+    ```
+    mv envconf .env
+    ```
     
-3. Config file default props.
+4. Config file default props.
     ```
     PORT=4000
     ```
  
-4. Run server
+5. Run server
     ```
     for development (using HMR)
+      $ yarn install
       $ yarn start:dev
     for production (using pm2)
+      $ yarn install
       $ yarn start:prod
       $ yarn stop
     ```
