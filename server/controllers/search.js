@@ -55,7 +55,8 @@ export const itemDetail = (data) => {
 			picture: picture,
 			condition: data.condition,
 			free_shipping: data.free_shipping,
-			sold_quantity: data.sold_quantity
+			sold_quantity: data.sold_quantity,
+			category_id: data.category_id
 		} 
 		return Object.assign({}, response, { item: item });
 	} else {
@@ -75,14 +76,14 @@ export const itemDescDetail = (data, response) => {
 	return response;
 };
 
-export const item_cat_list = (data, response) => {
+export const item_cat_list = (data, parm_item_list, parm_item) => {
 	let breadcrumb_list = [];
-	if (!data.hasOwnProperty('error')) {		
+	if (!data.hasOwnProperty('error')) {
 		if (data.path_from_root.length > 0) {
 			for (let i = 0; i < data.path_from_root.length; i++) {
 				breadcrumb_list.push(data.path_from_root[i].name)
 			}
 		}
 	}
-	return Object.assign({}, response, { path_from_root: breadcrumb_list });
+	return Object.assign({}, parm_item_list ? parm_item_list : parm_item, { path_from_root: breadcrumb_list });
 };

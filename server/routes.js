@@ -20,7 +20,7 @@ router.route('/items')
 				const items = search.itemsResult(data);
 				if(!items.hasOwnProperty('error')) {
 					callService(getApiData(SEARCH_CAT, items.breadcrumb), function(err, cat_list){
-						res.send(search.item_cat_list(cat_list, items));						
+						res.send(search.item_cat_list(cat_list, items, null));
 					});
 				} else {
 					res.send(items);
@@ -35,14 +35,18 @@ router.route('/items/:id')
 			if(err) {
 				res.status(500).send({ error: err.message });
 			} else {
-				const item = search.itemDetail(data);
+				let item = search.itemDetail(data);
 				if(!item.hasOwnProperty('error')) {
-					
 					callService(getApiData(SEARCH_PRD_DET, data.id), function(err, description){
-						res.send(search.itemDescDetail(description, item));						
+						item = search.itemDescDetail(description, item);
+						if(!item.hasOwnProperty('error')) {
+							callService(getApiData(SEARCH_CAT, item.item.category_id), function(err, cat_list){
+								item = search.item_cat_list(cat_list, null, item);
+								res.send(item);
+							});
+						}
 					});
 				} else {
-					
 					res.send(item);
 				}
 			}
