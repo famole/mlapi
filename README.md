@@ -1,12 +1,12 @@
-# react-express FrontEnd Test
-ReactJs / Node - SAP to display Mercado Libre products using ML production api.
+# NodeJs Example API
+NodeJs - example of api to consume an external endpoint. (Mercado Libre endpoints configured by default)
 
 ### Usage
 
 1. Clone repository
     ```
     $ git clone ''
-    $ cd mlfetest
+    $ cd mlapi
     $ rm -rf .git
     ```
 
@@ -18,12 +18,6 @@ ReactJs / Node - SAP to display Mercado Libre products using ML production api.
 3. Config file default props.
     ```
     PORT=4000
-    DEV_PORT=3000
-    SECRET_KEY="SECRET_KEY"
-    OG_TITLE=
-    OG_DESCRIPTION=
-    OG_IMAGE=
-    TITLE="React Express Boilerplate"
     ```
  
 4. Run server
