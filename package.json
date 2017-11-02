@@ -27,7 +27,7 @@
     "server",
     "serverside"
   ],
-  "author": "iamdew <iam@hyungdew.com>",
+  "author": "Fabian Molina",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.0",

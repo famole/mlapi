@@ -6,3 +6,12 @@ export function parseItemPrice(price) {
     };
     return parsed_price;
 }
+
+export function sortByCategories(jsonObj) {
+	if (jsonObj) {
+		return jsonObj.sort(function(a, b) {
+		    return parseInt(b.results) - parseInt(a.results);
+		});
+	}
+	return jsonObj;
+}

@@ -1,10 +1,13 @@
 import { author } from '../data/global_constants';
-import { parseItemPrice } from '../utils/utils';
+import { parseItemPrice, sortByCategories } from '../utils/utils';
+
+const FILTER_CATEGORY = 'category';
 
 export const itemsResult = (data) => {
 	let response = { author: author };
 	let items = []
 	let categories = []
+	let cat_breadcrumb = '';
 	if (Object.keys(data.results).length > 0) {
 		for (let i = 0; i < data.results.length; i++) {
 			const parsed_price = parseItemPrice(data.results[i].price);
@@ -23,8 +26,16 @@ export const itemsResult = (data) => {
 			items.push(item);
 			categories.push(data.results[i].category_id);
 		}
+		let cat_list = [];
+		for (let i = 0; i < data.available_filters.length; i++) {
+			if (data.available_filters[i].id === FILTER_CATEGORY) {
+				cat_list = sortByCategories(data.available_filters[i].values);
+				i = data.available_filters.length;
+				cat_breadcrumb = cat_list[0].id;
+			}
+		}
 	}
-	return Object.assign({}, response, { categories: categories, items: items });
+	return Object.assign({}, response, { categories: categories, items: items, breadcrumb: cat_breadcrumb });
 };
 
 export const itemDetail = (data) => {
@@ -62,4 +73,16 @@ export const itemDescDetail = (data, response) => {
 		return Object.assign({}, response, { item });
 	}
 	return response;
+};
+
+export const item_cat_list = (data, response) => {
+	let breadcrumb_list = [];
+	if (!data.hasOwnProperty('error')) {		
+		if (data.path_from_root.length > 0) {
+			for (let i = 0; i < data.path_from_root.length; i++) {
+				breadcrumb_list.push(data.path_from_root[i].name)
+			}
+		}
+	}
+	return Object.assign({}, response, { path_from_root: breadcrumb_list });
 };

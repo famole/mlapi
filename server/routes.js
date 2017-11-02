@@ -3,6 +3,7 @@ import {
 	SEARCH,
 	SEARCH_PRD_ID,
 	SEARCH_PRD_DET,
+	SEARCH_CAT,
 	getApiData
 } from './data/network_constants';
 import { callService } from './network/network_layer';
@@ -17,7 +18,13 @@ router.route('/items')
 				res.status(500).send({ error: err.message });
 			} else {
 				const items = search.itemsResult(data);
-				res.send(items);
+				if(!items.hasOwnProperty('error')) {
+					callService(getApiData(SEARCH_CAT, items.breadcrumb), function(err, cat_list){
+						res.send(search.item_cat_list(cat_list, items));						
+					});
+				} else {
+					res.send(items);
+				}
 			}
 		});
 	});
@@ -30,10 +37,12 @@ router.route('/items/:id')
 			} else {
 				const item = search.itemDetail(data);
 				if(!item.hasOwnProperty('error')) {
+					
 					callService(getApiData(SEARCH_PRD_DET, data.id), function(err, description){
 						res.send(search.itemDescDetail(description, item));						
 					});
 				} else {
+					
 					res.send(item);
 				}
 			}
